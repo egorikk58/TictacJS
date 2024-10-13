@@ -3,14 +3,17 @@ let counter = 0;
 let ElementCell = document.querySelectorAll(".tictac-block-cell");
 let Playa = document.getElementById("Player");
 let Winner = document.getElementById("winnerOfGame");
+let BtnNewGame = document.querySelector(".newGame-btn");
 
 function Who(){
     if (step == "Circle"){
         step = "Cross";
         Playa.innerHTML = "Нолик";
+        Playa.style.color = "Red";
     }else{
         step = "Circle";
         Playa.innerHTML = "Крестик";
+        Playa.style.color = "Green";
     }
 }
 
@@ -33,9 +36,11 @@ ElementCell.forEach((item) =>{
         counter++;
         if (counter >= 5 && counter != 9 && isVictory()){
             if (step == "Circle"){
-                Winner.innerHTML = " Крестик";
+                Winner.innerText = " Крестик";
+                Winner.style.color = "Green";
             }else{
-                Winner.innerHTML = " Нолик";
+                Winner.innerText = " Нолик";
+                Winner.style.color = "Red";
             }
             ElementCell.forEach(cell => cell.style.pointerEvents = 'none');
 
@@ -68,3 +73,7 @@ function isVictory(){
     }
     return false;
 }
+
+BtnNewGame.addEventListener('click',()=>{
+    document.location.reload();
+})
